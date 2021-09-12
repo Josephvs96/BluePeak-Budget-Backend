@@ -10,7 +10,8 @@ This API offers very limited functionality as to what it can do as of now, i wil
 
 - /signup
 
-  - POST : _make sure to include the following json object in the request body:_
+  - POST : Creats a new user in the database.
+     _make sure to include the following json object in the request body:_
 
     ```javascript
     {
@@ -32,7 +33,8 @@ This API offers very limited functionality as to what it can do as of now, i wil
     - message field with the a success message
 
 - /login
-  - POST : _make sure to include the following json object in request body:_
+  - POST : Sends a login request to check if the user exists and if the provided cridentials are correct.
+     _make sure to include the following json object in request body:_
     ```javascript
     {
      "email":"YOUR_EMAIL",
@@ -44,7 +46,8 @@ This API offers very limited functionality as to what it can do as of now, i wil
     - the user object from the database
 - /incomes
   - GET : Returns a json array with all the incomes in the database
-  - POST : _make sure to include the following json object in request body:_
+  - POST : Creats a new income and saves it to the database.
+     _make sure to include the following json object in request body:_
     ```javascript
     {
      "amount": AMOUNT_IN_NUMBERS,
@@ -54,7 +57,8 @@ This API offers very limited functionality as to what it can do as of now, i wil
     Returns a object with:
     - error field if there is an error in the request
     - message field with the a success message
-  - Delete : _make sure to include the following json object in request body:_
+  - Delete : Deletes an income document from the database. 
+      _make sure to include the following json object in request body:_
     ```javascript
     {
      "_id": ID_NUMBER_OF_THE_INCOME_TO_BE_DELETED,
@@ -65,7 +69,8 @@ This API offers very limited functionality as to what it can do as of now, i wil
     - message field with the a success message
 - /outcomes
   - GET : Returns a json array with all the outcomes in the database
-  - POST : _make sure to include the following json object in request body:_
+  - POST : Creats a new outcome and adds it to the database.
+     _make sure to include the following json object in request body:_
     ```javascript
     {
      "amount": AMOUNT_IN_NUMBERS,
@@ -75,7 +80,8 @@ This API offers very limited functionality as to what it can do as of now, i wil
     Returns a object with:
     - error field if there is an error in the request
     - message field with the a success message
-  - Delete : _make sure to include the following json object in request body:_
+  - Delete : Deletes a outcome document from the database.
+     _make sure to include the following json object in request body:_
     ```javascript
     {
      "_id": ID_NUMBER_OF_THE_OUTCOME_TO_BE_DELETED,
