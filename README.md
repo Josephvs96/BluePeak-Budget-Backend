@@ -89,3 +89,9 @@ This API offers very limited functionality as to what it can do as of now, i wil
 - Add an update feature to the incomes/outcomes
 - Add an update profile feature to the user
 - Link the incomes and outcomes with a specific user
+
+## How to run
+
+- clone the repo
+- run npm install
+- create .env file and add DATABASE_URL with the link to your mongoDB server
