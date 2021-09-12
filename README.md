@@ -92,6 +92,6 @@ This API offers very limited functionality as to what it can do as of now, i wil
 
 ## How to run
 
-- clone the repo
-- run npm install
-- create .env file and add DATABASE_URL with the link to your mongoDB server
+- Clone the repo
+- Run npm install
+- Create .env file and add DATABASE_URL with the link to your mongoDB server
