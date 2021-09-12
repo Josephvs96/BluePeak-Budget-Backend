@@ -25,6 +25,7 @@ This API offers very limited functionality as to what it can do as of now, i wil
     _Note that the address field is optional while the others are required_
 
     **The password on the backend is not hashed and it's saved in plain text, _DO NOT_ use a password that you usually use**
+    
     Returns a object with:
 
     - error field if there is an error in the request
