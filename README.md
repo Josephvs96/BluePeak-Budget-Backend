@@ -4,10 +4,14 @@
 
 The idea behind this API is to provide a place holder API to make requests agains while the groups haven't made their own APIs for the projects.
 
+This API offers very limited functionality as to what it can do as of now, i will add some more features in the future but for now it's a good way to practice API calls and manage diffrent request states like (Loading, Errors and Data)
+
 ## Endpoints
 
 - /signup
+
   - POST : _make sure to include the following json object in the request body:_
+
     ```javascript
     {
       "firstName":"YOUR_FIRST_NAME",
@@ -17,11 +21,15 @@ The idea behind this API is to provide a place holder API to make requests again
       "address":"YOUR:ADDRESS"
     }
     ```
+
     _Note that the address field is optional while the others are required_
+
     **The password on the backend is not hashed and it's saved in plain text, _DO NOT_ use a password that you usually use**
     Returns a object with:
+
     - error field if there is an error in the request
     - message field with the a success message
+
 - /login
   - POST : _make sure to include the following json object in request body:_
     ```javascript
@@ -75,3 +83,9 @@ The idea behind this API is to provide a place holder API to make requests again
     Returns a object with:
     - error field if there is an error in the request
     - message field with the a success message
+
+## TODO
+
+- Add an update feature to the incomes/outcomes
+- Add an update profile feature to the user
+- Link the incomes and outcomes with a specific user
