@@ -32,7 +32,7 @@ router.get('/outcomes/:id', async (req, res) => {
 		if (!outcome) {
 			return res
 				.status(404)
-				.send({ error: 'No outcome with the provided if found' });
+				.send({ error: 'No outcome with the provided id found' });
 		}
 
 		res.status(200).send(outcome);
@@ -61,7 +61,9 @@ router.patch('/outcomes/:id', async (req, res) => {
 		});
 
 		if (!outcome) {
-			return res.status(404).send({ error: 'No income by that id found' });
+			return res
+				.status(404)
+				.send({ error: 'No outcome with the provided id found' });
 		}
 
 		res.status(200).send({ message: 'One income updated' });
@@ -79,7 +81,7 @@ router.delete('/outcomes/:id', async (req, res) => {
 		if (!outcome) {
 			return res
 				.status(404)
-				.send({ error: 'No outcome with the provided if found' });
+				.send({ error: 'No outcome with the provided id found' });
 		}
 
 		res.status(200).send({ message: 'One outcome deleted' });

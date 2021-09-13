@@ -11,13 +11,13 @@ This API offers very limited functionality as to what it can do as of now, i wil
 - /signup
 
   - POST : Creats a new user in the database.
-     
-     _make sure to include the following json object in the request body:_
+
+    _make sure to include the following json object in the request body:_
 
     ```javascript
     {
-      "firstName":"YOUR_FIRST_NAME",
-      "lastName":"YOUR_LAST_NAME",
+      "firstname":"YOUR_FIRST_NAME",
+      "lastname":"YOUR_LAST_NAME",
       "email":"YOUR_EMAIL",
       "password":"YOUR_PASSWORD",
       "address":"YOUR_ADDRESS"
@@ -27,7 +27,7 @@ This API offers very limited functionality as to what it can do as of now, i wil
     _Note that the address field is optional while the others are required_
 
     **The password on the backend is not hashed and it's saved in plain text, _DO NOT_ use a password that you usually use**
-    
+
     Returns a object with:
 
     - error field if there is an error in the request
@@ -35,8 +35,7 @@ This API offers very limited functionality as to what it can do as of now, i wil
 
 - /login
   - POST : Sends a login request to check if the user exists and if the provided cridentials are correct.
-     
-     _make sure to include the following json object in request body:_
+    _make sure to include the following json object in request body:_
     ```javascript
     {
      "email":"YOUR_EMAIL",
@@ -49,8 +48,7 @@ This API offers very limited functionality as to what it can do as of now, i wil
 - /incomes
   - GET : Returns a json array with all the incomes in the database
   - POST : Creats a new income and saves it to the database.
-     
-     _make sure to include the following json object in request body:_
+    _make sure to include the following json object in request body:_
     ```javascript
     {
      "amount": AMOUNT_IN_NUMBERS,
@@ -60,53 +58,67 @@ This API offers very limited functionality as to what it can do as of now, i wil
     Returns a object with:
     - error field if there is an error in the request
     - message field with the a success message
-  - Delete : Deletes an income document from the database. 
-     
-     _make sure to include the following json object in request body:_
+- /incomes/:id (The id of the income)
+
+  - GET : Returns a specific income document
+  - PATCH : Updates a specific income document
+    _make sure to include the following json object in request body:_
     ```javascript
     {
-     "_id": ID_NUMBER_OF_THE_INCOME_TO_BE_DELETED,
+     "amount": UPDATED_AMOUNT_IN_NUMBERS,
+     "description":"UPDATED_DESCRIPTION_ABOUT_THE_INCOME",
     }
     ```
     Returns a object with:
     - error field if there is an error in the request
     - message field with the a success message
+  - DELETE : Deletes a specific document from the database
+    Returns a object with:
+    - error field if there is an error in the request
+    - message field with the a success message
+
 - /outcomes
-  - GET : Returns a json array with all the outcomes in the database
-  - POST : Creats a new outcome and adds it to the database.
-    
+- GET : Returns a json array with all the outcomes in the database
+- POST : Creats a new outcome and saves it to the database.
+  _make sure to include the following json object in request body:_
+  ```javascript
+  {
+    "amount": AMOUNT_IN_NUMBERS,
+    "description":"DESCRIPTION_ABOUT_THE_OUTCOME",
+  }
+  ```
+  Returns a object with:
+  - error field if there is an error in the request
+  - message field with the a success message
+- /outcomes/:id (The id of the outcome)
+  - GET : Returns a specific outcome document
+  - PATCH : Updates a specific outcome document
     _make sure to include the following json object in request body:_
     ```javascript
     {
-     "amount": AMOUNT_IN_NUMBERS,
-     "description":"DESCRIPTION_ABOUT_THE_OUTCOME",
+     "amount": UPDATED_AMOUNT_IN_NUMBERS,
+     "description":"UPDATED_DESCRIPTION_ABOUT_THE_OUTCOME",
     }
     ```
     Returns a object with:
     - error field if there is an error in the request
     - message field with the a success message
-  - Delete : Deletes a outcome document from the database.
-    
-    _make sure to include the following json object in request body:_
-    ```javascript
-    {
-     "_id": ID_NUMBER_OF_THE_OUTCOME_TO_BE_DELETED,
-    }
-    ```
+  - DELETE : Deletes a specific document from the database
     Returns a object with:
     - error field if there is an error in the request
     - message field with the a success message
 
 ## TODO
 
-- Add an update feature to the incomes/outcomes
 - Add an update profile feature to the user
 - Link the incomes and outcomes with a specific user
 
 ## How to use
-- You can use the like provided to post without deploying locally.
 
-## How to run locally 
+- You can send requests to the provided Heroku link using Postman or via javascript.
+
+## How to run locally
+
 - Clone the repo
 - Run npm install
 - Create .env file and add DATABASE_URL with the link to your local mongoDB server or mongoDB Atlas
