@@ -12,6 +12,14 @@ app.use(cors());
 app.post('/signup', async (req, res) => {
 	const user = req.body;
 	try {
+		const userAlreadyExists = (await User.findOne({ email: user.email }))
+			? true
+			: false;
+		if (userAlreadyExists)
+			return res
+				.status(400)
+				.json({ error: 'User already exist, please login' });
+
 		await User.create(user);
 		res.status(201).json({ message: 'User Created successfully' });
 	} catch (error) {
