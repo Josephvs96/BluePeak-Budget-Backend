@@ -48,6 +48,7 @@ This API offers very limited functionality as to what it can do as of now, i wil
 - /incomes
   - GET : Returns a json array with all the incomes in the database
   - POST : Creats a new income and saves it to the database.
+
     _make sure to include the following json object in request body:_
     ```javascript
     {
