@@ -104,7 +104,7 @@ This API offers very limited functionality as to what it can do as of now, i wil
 - Link the incomes and outcomes with a specific user
 
 ## How to use
-- You can use the like provided to post with deploying locally.
+- You can use the like provided to post without deploying locally.
 
 ## How to run locally 
 - Clone the repo
