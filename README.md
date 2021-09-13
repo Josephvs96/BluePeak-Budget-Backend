@@ -35,6 +35,7 @@ This API offers very limited functionality as to what it can do as of now, i wil
 
 - /login
   - POST : Sends a login request to check if the user exists and if the provided cridentials are correct.
+
     _make sure to include the following json object in request body:_
     ```javascript
     {
@@ -62,7 +63,9 @@ This API offers very limited functionality as to what it can do as of now, i wil
 - /incomes/:id (The id of the income)
 
   - GET : Returns a specific income document
+
   - PATCH : Updates a specific income document
+
     _make sure to include the following json object in request body:_
     ```javascript
     {
@@ -73,14 +76,17 @@ This API offers very limited functionality as to what it can do as of now, i wil
     Returns an object with:
     - error field if there is an error in the request
     - message field with the a success message
+
   - DELETE : Deletes a specific document from the database
     Returns a object with:
     - error field if there is an error in the request
     - message field with the a success message
 
 - /outcomes
-- GET : Returns a json array with all the outcomes in the database
+- GET : Returns a json array with all the outcomes in the database.
+
 - POST : Creats a new outcome and saves it to the database.
+
   _make sure to include the following json object in request body:_
   ```javascript
   {
@@ -91,9 +97,12 @@ This API offers very limited functionality as to what it can do as of now, i wil
   Returns an object with:
   - error field if there is an error in the request
   - message field with the a success message
+
 - /outcomes/:id (The id of the outcome)
-  - GET : Returns a specific outcome document
-  - PATCH : Updates a specific outcome document
+  - GET : Returns a specific outcome document.
+
+  - PATCH : Updates a specific outcome document.
+
     _make sure to include the following json object in request body:_
     ```javascript
     {
@@ -102,9 +111,11 @@ This API offers very limited functionality as to what it can do as of now, i wil
     }
     ```
     Returns an object with:
-    - error field if there is an error in the request
-    - message field with the a success message
-  - DELETE : Deletes a specific document from the database
+    - error field if there is an error in the request.
+    - message field with the a success message.
+
+  - DELETE : Deletes a specific document from the database.
+
     Returns an object with:
     - error field if there is an error in the request
     - message field with the a success message
