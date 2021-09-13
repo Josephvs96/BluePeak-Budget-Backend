@@ -109,4 +109,4 @@ This API offers very limited functionality as to what it can do as of now, i wil
 ## How to run locally 
 - Clone the repo
 - Run npm install
-- Create .env file and add DATABASE_URL with the link to your mongoDB server
+- Create .env file and add DATABASE_URL with the link to your local mongoDB server or mongoDB Atlas
