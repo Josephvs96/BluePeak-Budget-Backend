@@ -103,8 +103,10 @@ This API offers very limited functionality as to what it can do as of now, i wil
 - Add an update profile feature to the user
 - Link the incomes and outcomes with a specific user
 
-## How to run
+## How to use
+- You can use the like provided to post with deploying locally.
 
+## How to run locally 
 - Clone the repo
 - Run npm install
 - Create .env file and add DATABASE_URL with the link to your mongoDB server
