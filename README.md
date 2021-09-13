@@ -20,7 +20,7 @@ This API offers very limited functionality as to what it can do as of now, i wil
       "lastName":"YOUR_LAST_NAME",
       "email":"YOUR_EMAIL",
       "password":"YOUR_PASSWORD",
-      "address":"YOUR:ADDRESS"
+      "address":"YOUR_ADDRESS"
     }
     ```
 
