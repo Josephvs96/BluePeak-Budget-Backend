@@ -4,7 +4,7 @@
 
 The idea behind this API is to provide a place holder API to make requests agains while the groups haven't made their own APIs for the projects.
 
-This API offers very limited functionality as to what it can do as of now, i will add some more features in the future but for now it's a good way to practice API calls and manage diffrent request states like (Loading, Errors and Data)
+This API offers very limited functionality as to what it can do as of now, i will add some more features in the future but for now it's a good way to practice API calls and manage different request states like (Loading, Errors and Data)
 
 ## Endpoints
 
@@ -28,10 +28,10 @@ This API offers very limited functionality as to what it can do as of now, i wil
 
     **The password on the backend is not hashed and it's saved in plain text, _DO NOT_ use a password that you usually use**
 
-    Returns a object with:
+    Returns an object with:
 
     - error field if there is an error in the request
-    - message field with the a success message
+    - message field with the success message
 
 - /login
   - POST : Sends a login request to check if the user exists and if the provided cridentials are correct.
@@ -42,7 +42,7 @@ This API offers very limited functionality as to what it can do as of now, i wil
      "password":"YOUR_PASSWORD",
     }
     ```
-    Returns a object with:
+    Returns an object with:
     - error field if there is an error in the request
     - the user object from the database
 - /incomes
@@ -55,7 +55,7 @@ This API offers very limited functionality as to what it can do as of now, i wil
      "description":"DESCRIPTION_ABOUT_THE_INCOME",
     }
     ```
-    Returns a object with:
+    Returns an object with:
     - error field if there is an error in the request
     - message field with the a success message
 - /incomes/:id (The id of the income)
@@ -69,7 +69,7 @@ This API offers very limited functionality as to what it can do as of now, i wil
      "description":"UPDATED_DESCRIPTION_ABOUT_THE_INCOME",
     }
     ```
-    Returns a object with:
+    Returns an object with:
     - error field if there is an error in the request
     - message field with the a success message
   - DELETE : Deletes a specific document from the database
@@ -87,7 +87,7 @@ This API offers very limited functionality as to what it can do as of now, i wil
     "description":"DESCRIPTION_ABOUT_THE_OUTCOME",
   }
   ```
-  Returns a object with:
+  Returns an object with:
   - error field if there is an error in the request
   - message field with the a success message
 - /outcomes/:id (The id of the outcome)
@@ -100,11 +100,11 @@ This API offers very limited functionality as to what it can do as of now, i wil
      "description":"UPDATED_DESCRIPTION_ABOUT_THE_OUTCOME",
     }
     ```
-    Returns a object with:
+    Returns an object with:
     - error field if there is an error in the request
     - message field with the a success message
   - DELETE : Deletes a specific document from the database
-    Returns a object with:
+    Returns an object with:
     - error field if there is an error in the request
     - message field with the a success message
 
