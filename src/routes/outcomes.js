@@ -1,6 +1,6 @@
 const express = require('express');
 
-const Outcome = require('../models/outcome');
+const Outcome = require('../models/outcome.js');
 
 const router = new express.Router();
 
