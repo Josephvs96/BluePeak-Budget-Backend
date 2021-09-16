@@ -31,6 +31,8 @@ This API offers very limited functionality as to what it can do as of now, i wil
     Returns an object with:
 
     - error field if there is an error in the request
+      - email address is already in use
+      - if one of the required fields is not provided then you will get en error message about what is missing.
     - message field with the success message
 
 - /login
@@ -45,9 +47,13 @@ This API offers very limited functionality as to what it can do as of now, i wil
     ```
     Returns an object with:
     - error field if there is an error in the request
+      - there is no account with the provided email address in the database
+      - if the password is not correct.
     - the user object from the database
 - /incomes
   - GET : Returns a json array with all the incomes in the database
+    
+    Always returns an array with the incomes or an empty array if there is no incomes in the database.
   - POST : Creats a new income and saves it to the database.
 
     _make sure to include the following json object in request body:_
@@ -59,11 +65,14 @@ This API offers very limited functionality as to what it can do as of now, i wil
     ```
     Returns an object with:
     - error field if there is an error in the request
+      - if one of the required fields is not provided then you will get en error message about what is missing.
     - message field with the a success message
 - /incomes/:id (The id of the income)
 
   - GET : Returns a specific income document
-
+  Returns an error if
+    - The provided id not a valid id.
+    - If there is no income with the proivded if id in the database.
   - PATCH : Updates a specific income document
 
     _make sure to include the following json object in request body:_
@@ -75,16 +84,19 @@ This API offers very limited functionality as to what it can do as of now, i wil
     ```
     Returns an object with:
     - error field if there is an error in the request
+      - The provided id not a valid id.
+      - If there is no income with the proivded if id in the database.
     - message field with the a success message
 
   - DELETE : Deletes a specific document from the database
     Returns a object with:
     - error field if there is an error in the request
+      - The provided id not a valid id.
+      - If there is no income with the proivded if id in the database.
     - message field with the a success message
 
 - /outcomes
 - GET : Returns a json array with all the outcomes in the database.
-
 - POST : Creats a new outcome and saves it to the database.
 
   _make sure to include the following json object in request body:_
@@ -96,11 +108,14 @@ This API offers very limited functionality as to what it can do as of now, i wil
   ```
   Returns an object with:
   - error field if there is an error in the request
+      
   - message field with the a success message
 
 - /outcomes/:id (The id of the outcome)
   - GET : Returns a specific outcome document.
-
+  Returns an error if
+    - The provided id not a valid id.
+    - If there is no outcome with the proivded if id in the database.
   - PATCH : Updates a specific outcome document.
 
     _make sure to include the following json object in request body:_
@@ -112,12 +127,16 @@ This API offers very limited functionality as to what it can do as of now, i wil
     ```
     Returns an object with:
     - error field if there is an error in the request.
+      - The provided id not a valid id.
+      - If there is no income with the proivded if id in the database.
     - message field with the a success message.
 
   - DELETE : Deletes a specific document from the database.
 
     Returns an object with:
     - error field if there is an error in the request
+      - The provided id not a valid id.
+      - If there is no income with the proivded if id in the database.
     - message field with the a success message
 
 ## TODO
