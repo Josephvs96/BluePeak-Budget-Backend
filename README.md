@@ -5,6 +5,7 @@
 The idea behind this API is to provide a place holder API to make requests agains while the groups haven't made their own APIs for the projects.
 
 This API offers very limited functionality as to what it can do as of now, i will add some more features in the future but for now it's a good way to practice API calls and manage different request states like (Loading, Errors and Data)
+
 This is a great opportunity to try and read documentation of other devs and try to use them in your project.
 
 ## Endpoints
