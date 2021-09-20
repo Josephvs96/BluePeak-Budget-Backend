@@ -11,10 +11,14 @@ This is a great opportunity to try and read documentation of other devs and try 
 # Main URL
 
 **Use your group number before the endpoints**
+
 Example:
+
+```
 _https://apidomain.com/1/signup_
 _https://apidomain.com/2/incomes_
 _https://apidomain.com/3/outcomes/6148d0e681a2f807fab38926_
+```
 
 ## Endpoints
 
