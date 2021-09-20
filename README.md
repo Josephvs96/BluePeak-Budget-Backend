@@ -8,6 +8,20 @@ This API offers very limited functionality as to what it can do as of now, i wil
 
 This is a great opportunity to try and read documentation of other devs and try to use them in your project.
 
+# Main URL
+
+**Use your group number before the endpoints**
+
+Example:
+
+```
+https://apidomain.com/1/signup
+https://apidomain.com/2/incomes
+https://apidomain.com/3/outcomes/6148d0e681a2f807fab38926
+```
+
+**You could use what data format you need in your requests and they will be saved to the database**
+
 ## Endpoints
 
 - /signup
@@ -26,8 +40,6 @@ This is a great opportunity to try and read documentation of other devs and try 
     }
     ```
 
-    _Note that the address field is optional while the others are required_
-
     **The password on the backend is not hashed and it's saved in plain text, _DO NOT_ use a password that you usually use**
 
     Returns an object with:
@@ -38,53 +50,67 @@ This is a great opportunity to try and read documentation of other devs and try 
     - message field with the success message
 
 - /login
+
   - POST : Sends a login request to check if the user exists and if the provided cridentials are correct.
 
     _make sure to include the following json object in request body:_
+
     ```javascript
     {
      "email":"YOUR_EMAIL",
      "password":"YOUR_PASSWORD",
     }
     ```
+
     Returns an object with:
+
     - error field if there is an error in the request
       - there is no account with the provided email address in the database
       - if the password is not correct.
     - the user object from the database
+
 - /incomes
+
   - GET : Returns a json array with all the incomes in the database
-    
+
     Always returns an array with the incomes or an empty array if there is no incomes in the database.
+
   - POST : Creats a new income and saves it to the database.
 
     _make sure to include the following json object in request body:_
+
     ```javascript
     {
      "amount": AMOUNT_IN_NUMBERS,
      "description":"DESCRIPTION_ABOUT_THE_INCOME",
     }
     ```
+
     Returns an object with:
+
     - error field if there is an error in the request
       - if one of the required fields is not provided then you will get en error message about what is missing.
     - message field with the a success message
+
 - /incomes/:id (The id of the income)
 
   - GET : Returns a specific income document
-  Returns an error if
+    Returns an error if
     - The provided id not a valid id.
     - If there is no income with the proivded if id in the database.
   - PATCH : Updates a specific income document
 
     _make sure to include the following json object in request body:_
+
     ```javascript
     {
      "amount": UPDATED_AMOUNT_IN_NUMBERS,
      "description":"UPDATED_DESCRIPTION_ABOUT_THE_INCOME",
     }
     ```
+
     Returns an object with:
+
     - error field if there is an error in the request
       - The provided id not a valid id.
       - If there is no income with the proivded if id in the database.
@@ -102,32 +128,38 @@ This is a great opportunity to try and read documentation of other devs and try 
 - POST : Creats a new outcome and saves it to the database.
 
   _make sure to include the following json object in request body:_
+
   ```javascript
   {
     "amount": AMOUNT_IN_NUMBERS,
     "description":"DESCRIPTION_ABOUT_THE_OUTCOME",
   }
   ```
+
   Returns an object with:
+
   - error field if there is an error in the request
-      
   - message field with the a success message
 
 - /outcomes/:id (The id of the outcome)
+
   - GET : Returns a specific outcome document.
-  Returns an error if
+    Returns an error if
     - The provided id not a valid id.
     - If there is no outcome with the proivded if id in the database.
   - PATCH : Updates a specific outcome document.
 
     _make sure to include the following json object in request body:_
+
     ```javascript
     {
      "amount": UPDATED_AMOUNT_IN_NUMBERS,
      "description":"UPDATED_DESCRIPTION_ABOUT_THE_OUTCOME",
     }
     ```
+
     Returns an object with:
+
     - error field if there is an error in the request.
       - The provided id not a valid id.
       - If there is no income with the proivded if id in the database.
@@ -136,6 +168,7 @@ This is a great opportunity to try and read documentation of other devs and try 
   - DELETE : Deletes a specific document from the database.
 
     Returns an object with:
+
     - error field if there is an error in the request
       - The provided id not a valid id.
       - If there is no income with the proivded if id in the database.

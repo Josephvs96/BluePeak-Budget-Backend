@@ -1,23 +1,22 @@
 const mongoose = require('mongoose');
 
-const outcomSchema = mongoose.Schema(
+const outcomSchema = new mongoose.Schema(
 	{
 		description: {
 			type: String,
-			required: true,
 			trim: true,
 		},
 		amount: {
 			type: Number,
-			required: true,
 			validate(value) {
 				if (value < 0) {
 					throw new Error('Amount must be a positive number');
 				}
 			},
 		},
+		group: { type: Number, required: true },
 	},
-	{ timestamps: true }
+	{ timestamps: true, strict: false }
 );
 
 const Outcome = mongoose.model('Outcome', outcomSchema);

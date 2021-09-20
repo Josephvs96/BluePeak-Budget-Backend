@@ -4,10 +4,11 @@ const Outcome = require('../models/outcome.js');
 
 const router = new express.Router();
 
-router.post('/outcomes', async (req, res) => {
+router.post('/:group/outcomes', async (req, res) => {
+	const group = req.params.group;
 	const outcomeData = req.body;
 	try {
-		const outcome = new Outcome(outcomeData);
+		const outcome = new Outcome({ ...outcomeData, group });
 		await outcome.save();
 		res.status(201).send({ message: 'One outcome added successfully' });
 	} catch (error) {
@@ -15,16 +16,17 @@ router.post('/outcomes', async (req, res) => {
 	}
 });
 
-router.get('/outcomes', async (req, res) => {
+router.get('/:group/outcomes', async (req, res) => {
+	const group = req.params.group;
 	try {
-		const outcomes = await Outcome.find({});
+		const outcomes = await Outcome.find({ group });
 		res.status(200).send(outcomes);
 	} catch (error) {
 		res.status(400).send({ error: error.message });
 	}
 });
 
-router.get('/outcomes/:id', async (req, res) => {
+router.get('/:group/outcomes/:id', async (req, res) => {
 	const { id: _id } = req.params;
 
 	try {
@@ -41,17 +43,8 @@ router.get('/outcomes/:id', async (req, res) => {
 	}
 });
 
-router.patch('/outcomes/:id', async (req, res) => {
+router.patch('/:group/outcomes/:id', async (req, res) => {
 	const { id: _id } = req.params;
-
-	const updates = Object.keys(req.body);
-	const allowedUpdates = ['amount', 'description'];
-	const isValidOperation = updates.every((update) =>
-		allowedUpdates.includes(update)
-	);
-
-	if (!isValidOperation)
-		return res.status(400).send({ error: 'Invalid update object!' });
 
 	try {
 		const newOutcome = req.body;
@@ -72,7 +65,7 @@ router.patch('/outcomes/:id', async (req, res) => {
 	}
 });
 
-router.delete('/outcomes/:id', async (req, res) => {
+router.delete('/:group/outcomes/:id', async (req, res) => {
 	const { id: _id } = req.params;
 
 	try {

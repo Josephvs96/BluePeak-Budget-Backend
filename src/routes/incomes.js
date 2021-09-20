@@ -1,13 +1,13 @@
 const express = require('express');
-
 const Income = require('../models/income.js');
 
 const router = new express.Router();
 
-router.post('/incomes', async (req, res) => {
+router.post('/:group/incomes', async (req, res) => {
+	const group = req.params.group;
 	const incomeData = req.body;
 	try {
-		const income = new Income(incomeData);
+		const income = new Income({ ...incomeData, group });
 		await income.save();
 		res.status(201).send({ message: 'One Income added successfully' });
 	} catch (error) {
@@ -15,16 +15,17 @@ router.post('/incomes', async (req, res) => {
 	}
 });
 
-router.get('/incomes', async (req, res) => {
+router.get('/:group/incomes', async (req, res) => {
+	const group = req.params.group;
 	try {
-		const incomes = await Income.find({});
+		const incomes = await Income.find({ group });
 		res.status(200).send(incomes);
 	} catch (error) {
 		res.status(400).send({ error: error.message });
 	}
 });
 
-router.get('/incomes/:id', async (req, res) => {
+router.get('/:group/incomes/:id', async (req, res) => {
 	const { id: _id } = req.params;
 
 	try {
@@ -41,17 +42,8 @@ router.get('/incomes/:id', async (req, res) => {
 	}
 });
 
-router.patch('/incomes/:id', async (req, res) => {
+router.patch('/:group/incomes/:id', async (req, res) => {
 	const { id: _id } = req.params;
-
-	const updates = Object.keys(req.body);
-	const allowedUpdates = ['amount', 'description'];
-	const isValidOperation = updates.every((update) =>
-		allowedUpdates.includes(update)
-	);
-
-	if (!isValidOperation)
-		return res.status(400).send({ error: 'Invalid update object!' });
 
 	try {
 		const newIncome = req.body;
@@ -72,7 +64,7 @@ router.patch('/incomes/:id', async (req, res) => {
 	}
 });
 
-router.delete('/incomes/:id', async (req, res) => {
+router.delete('/:group/incomes/:id', async (req, res) => {
 	try {
 		const { id: _id } = req.params;
 		const income = await Income.findByIdAndDelete(_id);
