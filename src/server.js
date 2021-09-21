@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const groupMiddleware = require('./middleware/groupChecker');
 const connectToDb = require('./db/mongoose');
 
 const app = express();
