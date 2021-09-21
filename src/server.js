@@ -12,7 +12,6 @@ const routes = require('./routes/index');
 app.use(routes.authRoute);
 app.use(routes.incomesRoute);
 app.use(routes.outcomesRoute);
-
 connectToDb().then(() => {
 	console.log('Db connected');
 	app.listen(port, () => {
