@@ -9,13 +9,14 @@ const userSchema = new mongoose.Schema(
 			type: String,
 			trim: true,
 			lowercase: true,
+			required: true,
 			validate(value) {
 				if (!validator.isEmail(value)) {
 					throw new Error('Email is invalid');
 				}
 			},
 		},
-		password: { type: String },
+		password: { type: String, required: true },
 		address: { type: String },
 		group: { type: Number },
 	},
