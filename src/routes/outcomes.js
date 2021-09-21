@@ -4,11 +4,10 @@ const Outcome = require('../models/outcome.js');
 
 const router = new express.Router();
 
-router.post('/:group/outcomes', async (req, res) => {
-	const group = req.params.group;
+router.post('/outcomes', async (req, res) => {
 	const outcomeData = req.body;
 	try {
-		const outcome = new Outcome({ ...outcomeData, group });
+		const outcome = new Outcome(outcomeData);
 		await outcome.save();
 		res.status(201).send({ message: 'One outcome added successfully' });
 	} catch (error) {
@@ -16,17 +15,16 @@ router.post('/:group/outcomes', async (req, res) => {
 	}
 });
 
-router.get('/:group/outcomes', async (req, res) => {
-	const group = req.params.group;
+router.get('/outcomes', async (req, res) => {
 	try {
-		const outcomes = await Outcome.find({ group });
+		const outcomes = await Outcome.find({});
 		res.status(200).send(outcomes);
 	} catch (error) {
 		res.status(400).send({ error: error.message });
 	}
 });
 
-router.get('/:group/outcomes/:id', async (req, res) => {
+router.get('/outcomes/:id', async (req, res) => {
 	const { id: _id } = req.params;
 
 	try {
@@ -43,7 +41,7 @@ router.get('/:group/outcomes/:id', async (req, res) => {
 	}
 });
 
-router.patch('/:group/outcomes/:id', async (req, res) => {
+router.patch('/outcomes/:id', async (req, res) => {
 	const { id: _id } = req.params;
 
 	try {
@@ -65,7 +63,7 @@ router.patch('/:group/outcomes/:id', async (req, res) => {
 	}
 });
 
-router.delete('/:group/outcomes/:id', async (req, res) => {
+router.delete('/outcomes/:id', async (req, res) => {
 	const { id: _id } = req.params;
 
 	try {

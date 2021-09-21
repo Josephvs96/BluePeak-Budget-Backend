@@ -14,7 +14,6 @@ const outcomSchema = new mongoose.Schema(
 				}
 			},
 		},
-		group: { type: Number, required: true },
 	},
 	{ timestamps: true, strict: false }
 );

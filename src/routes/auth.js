@@ -4,7 +4,7 @@ const User = require('../models/user.js');
 
 const router = new express.Router();
 
-router.post('/:group/signup', async (req, res) => {
+router.post('/signup', async (req, res) => {
 	const group = req.params.group;
 	const user = req.body;
 	try {
@@ -29,7 +29,7 @@ router.post('/:group/signup', async (req, res) => {
 	}
 });
 
-router.post('/:group/login', async (req, res) => {
+router.post('/login', async (req, res) => {
 	const group = req.params.group;
 	const { email, password } = req.body;
 

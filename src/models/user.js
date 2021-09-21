@@ -17,7 +17,6 @@ const userSchema = new mongoose.Schema(
 		},
 		password: { type: String },
 		address: { type: String },
-		group: { type: Number },
 	},
 	{ timestamps: true, strict: false }
 );

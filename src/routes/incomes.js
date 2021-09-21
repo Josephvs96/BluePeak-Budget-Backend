@@ -3,11 +3,10 @@ const Income = require('../models/income.js');
 
 const router = new express.Router();
 
-router.post('/:group/incomes', async (req, res) => {
-	const group = req.params.group;
+router.post('/incomes', async (req, res) => {
 	const incomeData = req.body;
 	try {
-		const income = new Income({ ...incomeData, group });
+		const income = new Income(incomeData);
 		await income.save();
 		res.status(201).send({ message: 'One Income added successfully' });
 	} catch (error) {
@@ -15,17 +14,16 @@ router.post('/:group/incomes', async (req, res) => {
 	}
 });
 
-router.get('/:group/incomes', async (req, res) => {
-	const group = req.params.group;
+router.get('/incomes', async (req, res) => {
 	try {
-		const incomes = await Income.find({ group });
+		const incomes = await Income.find({});
 		res.status(200).send(incomes);
 	} catch (error) {
 		res.status(400).send({ error: error.message });
 	}
 });
 
-router.get('/:group/incomes/:id', async (req, res) => {
+router.get('/incomes/:id', async (req, res) => {
 	const { id: _id } = req.params;
 
 	try {
@@ -42,7 +40,7 @@ router.get('/:group/incomes/:id', async (req, res) => {
 	}
 });
 
-router.patch('/:group/incomes/:id', async (req, res) => {
+router.patch('/incomes/:id', async (req, res) => {
 	const { id: _id } = req.params;
 
 	try {
@@ -64,7 +62,7 @@ router.patch('/:group/incomes/:id', async (req, res) => {
 	}
 });
 
-router.delete('/:group/incomes/:id', async (req, res) => {
+router.delete('/incomes/:id', async (req, res) => {
 	try {
 		const { id: _id } = req.params;
 		const income = await Income.findByIdAndDelete(_id);
