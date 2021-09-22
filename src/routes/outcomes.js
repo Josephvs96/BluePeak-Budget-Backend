@@ -1,8 +1,9 @@
 const express = require('express');
-
+const auth = require('../middleware/authMiddleware');
 const Outcome = require('../models/outcome.js');
 
 const router = new express.Router();
+router.use(auth);
 
 router.post('/outcomes', async (req, res) => {
 	const outcomeData = req.body;

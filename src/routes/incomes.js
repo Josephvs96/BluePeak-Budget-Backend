@@ -1,7 +1,9 @@
 const express = require('express');
 const Income = require('../models/income.js');
+const auth = require('../middleware/authMiddleware');
 
 const router = new express.Router();
+router.use(auth);
 
 router.post('/incomes', async (req, res) => {
 	const incomeData = req.body;
