@@ -8,7 +8,7 @@ router.use(auth);
 router.post('/outcomes', async (req, res) => {
 	const outcomeData = req.body;
 	try {
-		const outcome = new Outcome(outcomeData);
+		const outcome = new Outcome({ ...outcomeData, owner: req.user._id });
 		await outcome.save();
 		res.status(201).send({ message: 'One outcome added successfully' });
 	} catch (error) {
@@ -18,7 +18,8 @@ router.post('/outcomes', async (req, res) => {
 
 router.get('/outcomes', async (req, res) => {
 	try {
-		const outcomes = await Outcome.find({});
+		await req.user.populate('outcomes');
+		const outcomes = req.user.outcomes;
 		res.status(200).send(outcomes);
 	} catch (error) {
 		res.status(400).send({ error: error.message });
@@ -29,7 +30,7 @@ router.get('/outcomes/:id', async (req, res) => {
 	const { id: _id } = req.params;
 
 	try {
-		const outcome = await Outcome.findById(_id);
+		const outcome = await Outcome.findOne({ _id, owner: req.user._id });
 		if (!outcome) {
 			return res
 				.status(404)
@@ -47,10 +48,14 @@ router.patch('/outcomes/:id', async (req, res) => {
 
 	try {
 		const newOutcome = req.body;
-		const outcome = await Outcome.findByIdAndUpdate(_id, newOutcome, {
-			new: true,
-			runValidators: true,
-		});
+		const outcome = await Outcome.findOneAndUpdate(
+			{ _id, owner: req.user._id },
+			newOutcome,
+			{
+				new: true,
+				runValidators: true,
+			}
+		);
 
 		if (!outcome) {
 			return res
@@ -68,7 +73,10 @@ router.delete('/outcomes/:id', async (req, res) => {
 	const { id: _id } = req.params;
 
 	try {
-		const outcome = await Outcome.findByIdAndDelete(_id);
+		const outcome = await Outcome.findOneAndDelete({
+			_id,
+			owner: req.user._id,
+		});
 
 		if (!outcome) {
 			return res

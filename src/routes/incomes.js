@@ -6,9 +6,9 @@ const router = new express.Router();
 router.use(auth);
 
 router.post('/incomes', async (req, res) => {
-	const incomeData = req.body;
 	try {
-		const income = new Income(incomeData);
+		const incomeData = req.body;
+		const income = new Income({ ...incomeData, owner: req.user._id });
 		await income.save();
 		res.status(201).send({ message: 'One Income added successfully' });
 	} catch (error) {
@@ -18,7 +18,8 @@ router.post('/incomes', async (req, res) => {
 
 router.get('/incomes', async (req, res) => {
 	try {
-		const incomes = await Income.find({});
+		await req.user.populate('incomes');
+		const incomes = req.user.incomes;
 		res.status(200).send(incomes);
 	} catch (error) {
 		res.status(400).send({ error: error.message });
@@ -29,7 +30,8 @@ router.get('/incomes/:id', async (req, res) => {
 	const { id: _id } = req.params;
 
 	try {
-		const income = await Income.findById(_id);
+		const income = await Income.findOne({ _id, owner: req.user._id });
+
 		if (!income) {
 			return res
 				.status(404)
@@ -46,11 +48,18 @@ router.patch('/incomes/:id', async (req, res) => {
 	const { id: _id } = req.params;
 
 	try {
-		const newIncome = req.body;
-		const income = await Income.findByIdAndUpdate(_id, newIncome, {
-			new: true,
-			runValidators: true,
-		});
+		const newIncomeData = req.body;
+		const income = await Income.findOneAndUpdate(
+			{
+				_id,
+				owner: req.user._id,
+			},
+			newIncomeData,
+			{
+				new: true,
+				runValidators: true,
+			}
+		);
 
 		if (!income) {
 			return res
@@ -67,7 +76,10 @@ router.patch('/incomes/:id', async (req, res) => {
 router.delete('/incomes/:id', async (req, res) => {
 	try {
 		const { id: _id } = req.params;
-		const income = await Income.findByIdAndDelete(_id);
+		const income = await Income.findOneAndDelete({
+			_id,
+			owner: req.user._id,
+		});
 
 		if (!income) {
 			return res

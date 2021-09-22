@@ -29,6 +29,18 @@ const userSchema = new mongoose.Schema(
 	{ timestamps: true, strict: false }
 );
 
+userSchema.virtual('incomes', {
+	ref: 'Income',
+	localField: '_id',
+	foreignField: 'owner',
+});
+
+userSchema.virtual('outcomes', {
+	ref: 'Outcome',
+	localField: '_id',
+	foreignField: 'owner',
+});
+
 userSchema.pre('save', async function (next) {
 	const user = this;
 

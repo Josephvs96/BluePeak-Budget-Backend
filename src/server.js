@@ -9,6 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 const routes = require('./routes/index');
+
 app.use(routes.authRoute);
 app.use(routes.incomesRoute);
 app.use(routes.outcomesRoute);
