@@ -58,7 +58,7 @@ https://apidomain.com/3/outcomes/6148d0e681a2f807fab38926
     ```javascript
     {
      "email":"YOUR_EMAIL",
-     "password":"YOUR_PASSWORD",
+     "password":"YOUR_PASSWORD"
     }
     ```
 
@@ -82,7 +82,7 @@ https://apidomain.com/3/outcomes/6148d0e681a2f807fab38926
     ```javascript
     {
      "amount": AMOUNT_IN_NUMBERS,
-     "description":"DESCRIPTION_ABOUT_THE_INCOME",
+     "description":"DESCRIPTION_ABOUT_THE_INCOME"
     }
     ```
 
@@ -105,7 +105,7 @@ https://apidomain.com/3/outcomes/6148d0e681a2f807fab38926
     ```javascript
     {
      "amount": UPDATED_AMOUNT_IN_NUMBERS,
-     "description":"UPDATED_DESCRIPTION_ABOUT_THE_INCOME",
+     "description":"UPDATED_DESCRIPTION_ABOUT_THE_INCOME"
     }
     ```
 
@@ -132,7 +132,7 @@ https://apidomain.com/3/outcomes/6148d0e681a2f807fab38926
   ```javascript
   {
     "amount": AMOUNT_IN_NUMBERS,
-    "description":"DESCRIPTION_ABOUT_THE_OUTCOME",
+    "description":"DESCRIPTION_ABOUT_THE_OUTCOME"
   }
   ```
 
@@ -154,7 +154,7 @@ https://apidomain.com/3/outcomes/6148d0e681a2f807fab38926
     ```javascript
     {
      "amount": UPDATED_AMOUNT_IN_NUMBERS,
-     "description":"UPDATED_DESCRIPTION_ABOUT_THE_OUTCOME",
+     "description":"UPDATED_DESCRIPTION_ABOUT_THE_OUTCOME"
     }
     ```
 
