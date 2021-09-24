@@ -1,7 +1,7 @@
 const authRoute = require('./auth');
 const incomesRoute = require('./incomes');
-const outcomesRoute = require('./outcomes');
+const expensesRoute = require('./expenses');
 
-const routes = { authRoute, incomesRoute, outcomesRoute };
+const routes = { authRoute, incomesRoute, expensesRoute };
 
 module.exports = routes;

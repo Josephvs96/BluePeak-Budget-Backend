@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const outcomSchema = new mongoose.Schema(
+const expenseSchema = new mongoose.Schema(
 	{
 		description: {
 			type: String,
@@ -23,6 +23,6 @@ const outcomSchema = new mongoose.Schema(
 	{ timestamps: true, strict: false }
 );
 
-const Outcome = mongoose.model('Outcome', outcomSchema);
+const Expense = mongoose.model('Expense', expenseSchema);
 
-module.exports = Outcome;
+module.exports = Expense;
