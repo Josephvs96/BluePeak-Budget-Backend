@@ -37,7 +37,7 @@ router.post('/:group/login', async (req, res) => {
 		if (!email || !password || email.length < 1 || password.length < 1) {
 			return res
 				.status(400)
-				.send({ Error: 'Both email and password must be provided' });
+				.send({ error: 'Both email and password must be provided' });
 		}
 
 		const user = await User.findOne({ email, group });
