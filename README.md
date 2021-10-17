@@ -194,3 +194,5 @@ This is a great opportunity to try and read documentation of other devs and try 
 - Clone the repo
 - Run npm install
 - Create .env file and add DATABASE_URL with the link to your local mongoDB server or mongoDB Atlas
+
+## Tests goes here
