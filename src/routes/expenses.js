@@ -1,14 +1,14 @@
 const express = require('express');
-
+const auth = require('../middleware/authMiddleware');
 const Expense = require('../models/expense');
 
 const router = new express.Router();
+router.use(auth);
 
-router.post('/:group/expenses', async (req, res) => {
-	const group = req.params.group;
+router.post('/expenses', async (req, res) => {
 	const expenseData = req.body;
 	try {
-		const expense = new Expense({ ...expenseData, group });
+		const expense = new Expense({ ...expenseData, owner: req.user._id });
 		await expense.save();
 		res.status(201).send({ message: 'One expense added successfully' });
 	} catch (error) {
@@ -16,21 +16,21 @@ router.post('/:group/expenses', async (req, res) => {
 	}
 });
 
-router.get('/:group/expenses', async (req, res) => {
-	const group = req.params.group;
+router.get('/expenses', async (req, res) => {
 	try {
-		const expense = await Expense.find({ group });
-		res.status(200).send(expense);
+		await req.user.populate('expenses');
+		const expenses = req.user.expenses;
+		res.status(200).send(expenses);
 	} catch (error) {
 		res.status(400).send({ error: error.message });
 	}
 });
 
-router.get('/:group/expenses/:id', async (req, res) => {
+router.get('/expenses/:id', async (req, res) => {
 	const { id: _id } = req.params;
 
 	try {
-		const expense = await Expense.findById(_id);
+		const expense = await Expense.findOne({ _id, owner: req.user._id });
 		if (!expense) {
 			return res
 				.status(404)
@@ -43,15 +43,19 @@ router.get('/:group/expenses/:id', async (req, res) => {
 	}
 });
 
-router.patch('/:group/expenses/:id', async (req, res) => {
+router.patch('/expenses/:id', async (req, res) => {
 	const { id: _id } = req.params;
 
 	try {
 		const newExpense = req.body;
-		const expense = await Expense.findByIdAndUpdate(_id, newExpense, {
-			new: true,
-			runValidators: true,
-		});
+		const expense = await Expense.findOneAndUpdate(
+			{ _id, owner: req.user._id },
+			newExpense,
+			{
+				new: true,
+				runValidators: true,
+			}
+		);
 
 		if (!expense) {
 			return res
@@ -65,11 +69,14 @@ router.patch('/:group/expenses/:id', async (req, res) => {
 	}
 });
 
-router.delete('/:group/expenses/:id', async (req, res) => {
+router.delete('/expenses/:id', async (req, res) => {
 	const { id: _id } = req.params;
 
 	try {
-		const expense = await Expense.findByIdAndDelete(_id);
+		const expense = await Expense.findOneAndDelete({
+			_id,
+			owner: req.user._id,
+		});
 
 		if (!expense) {
 			return res

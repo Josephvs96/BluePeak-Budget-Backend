@@ -13,10 +13,11 @@ const incomeSchema = new mongoose.Schema(
 					throw new Error('Amount must be a positive number');
 				}
 			},
-			group: {
-				type: Number,
-				required: true,
-			},
+		},
+		owner: {
+			type: mongoose.Schema.Types.ObjectId,
+			required: true,
+			ref: 'User',
 		},
 	},
 	{ timestamps: true, strict: false }

@@ -8,29 +8,25 @@ This API offers very limited functionality as to what it can do as of now, i wil
 
 This is a great opportunity to try and read documentation of other devs and try to use them in your project.
 
-# Changelog
+# Main URL
 
-- ## Renamed the "outcomes" endpoint to "expenses"
+**Use your group number before the endpoints**
 
-- ## Added the ability to have diffrent users, incomes and expenses to diffrent groups:
+Example:
 
-  **Use your group number before the endpoints**
+```
+https://apidomain.com/1/signup
+https://apidomain.com/2/incomes
+https://apidomain.com/3/outcomes/6148d0e681a2f807fab38926
+```
 
-  Example:
-
-  ```
-  https://apidomain.com/1/signup
-  https://apidomain.com/2/incomes
-  https://apidomain.com/3/expenses/6148d0e681a2f807fab38926
-  ```
-
-- ## You could send what data format you need in your requests and they will be saved to the database
+**You could use what data format you need in your requests and they will be saved to the database**
 
 ## Endpoints
 
 - /signup
 
-  - POST : Creates a new user in the database.
+  - POST : Creats a new user in the database.
 
     _make sure to include the following json object in the request body:_
 
@@ -44,8 +40,6 @@ This is a great opportunity to try and read documentation of other devs and try 
     }
     ```
 
-    **The email and password fields in this object are required. This is because the only way to login is via email and password**
-
     **The password on the backend is not hashed and it's saved in plain text, _DO NOT_ use a password that you usually use**
 
     Returns an object with:
@@ -57,14 +51,14 @@ This is a great opportunity to try and read documentation of other devs and try 
 
 - /login
 
-  - POST : Sends a login request to check if the user exists and if the provided credentials are correct.
+  - POST : Sends a login request to check if the user exists and if the provided cridentials are correct.
 
     _make sure to include the following json object in request body:_
 
     ```javascript
     {
      "email":"YOUR_EMAIL",
-     "password":"YOUR_PASSWORD"
+     "password":"YOUR_PASSWORD",
     }
     ```
 
@@ -81,14 +75,14 @@ This is a great opportunity to try and read documentation of other devs and try 
 
     Always returns an array with the incomes or an empty array if there is no incomes in the database.
 
-  - POST : Creates a new income and saves it to the database.
+  - POST : Creats a new income and saves it to the database.
 
     _make sure to include the following json object in request body:_
 
     ```javascript
     {
      "amount": AMOUNT_IN_NUMBERS,
-     "description":"DESCRIPTION_ABOUT_THE_INCOME"
+     "description":"DESCRIPTION_ABOUT_THE_INCOME",
     }
     ```
 
@@ -103,7 +97,7 @@ This is a great opportunity to try and read documentation of other devs and try 
   - GET : Returns a specific income document
     Returns an error if
     - The provided id not a valid id.
-    - If there is no income with the provided if id in the database.
+    - If there is no income with the proivded if id in the database.
   - PATCH : Updates a specific income document
 
     _make sure to include the following json object in request body:_
@@ -111,7 +105,7 @@ This is a great opportunity to try and read documentation of other devs and try 
     ```javascript
     {
      "amount": UPDATED_AMOUNT_IN_NUMBERS,
-     "description":"UPDATED_DESCRIPTION_ABOUT_THE_INCOME"
+     "description":"UPDATED_DESCRIPTION_ABOUT_THE_INCOME",
     }
     ```
 
@@ -119,26 +113,26 @@ This is a great opportunity to try and read documentation of other devs and try 
 
     - error field if there is an error in the request
       - The provided id not a valid id.
-      - If there is no income with the provided if id in the database.
+      - If there is no income with the proivded if id in the database.
     - message field with the a success message
 
   - DELETE : Deletes a specific document from the database
     Returns a object with:
     - error field if there is an error in the request
       - The provided id not a valid id.
-      - If there is no income with the provided if id in the database.
+      - If there is no income with the proivded if id in the database.
     - message field with the a success message
 
-- /expenses
-- GET : Returns a json array with all the expenses in the database.
-- POST : Creates a new expense and saves it to the database.
+- /outcomes
+- GET : Returns a json array with all the outcomes in the database.
+- POST : Creats a new outcome and saves it to the database.
 
   _make sure to include the following json object in request body:_
 
   ```javascript
   {
     "amount": AMOUNT_IN_NUMBERS,
-    "description":"DESCRIPTION_ABOUT_THE_EXPENSE"
+    "description":"DESCRIPTION_ABOUT_THE_OUTCOME",
   }
   ```
 
@@ -147,20 +141,20 @@ This is a great opportunity to try and read documentation of other devs and try 
   - error field if there is an error in the request
   - message field with the a success message
 
-- /expenses/:id (The id of the expense)
+- /outcomes/:id (The id of the outcome)
 
-  - GET : Returns a specific expense document.
+  - GET : Returns a specific outcome document.
     Returns an error if
     - The provided id not a valid id.
-    - If there is no expense with the provided if id in the database.
-  - PATCH : Updates a specific expense document.
+    - If there is no outcome with the proivded if id in the database.
+  - PATCH : Updates a specific outcome document.
 
     _make sure to include the following json object in request body:_
 
     ```javascript
     {
      "amount": UPDATED_AMOUNT_IN_NUMBERS,
-     "description":"UPDATED_DESCRIPTION_ABOUT_THE_EXPENSE"
+     "description":"UPDATED_DESCRIPTION_ABOUT_THE_OUTCOME",
     }
     ```
 
@@ -168,7 +162,7 @@ This is a great opportunity to try and read documentation of other devs and try 
 
     - error field if there is an error in the request.
       - The provided id not a valid id.
-      - If there is no expense with the provided if id in the database.
+      - If there is no income with the proivded if id in the database.
     - message field with the a success message.
 
   - DELETE : Deletes a specific document from the database.
@@ -177,13 +171,13 @@ This is a great opportunity to try and read documentation of other devs and try 
 
     - error field if there is an error in the request
       - The provided id not a valid id.
-      - If there is no expense with the provided if id in the database.
+      - If there is no income with the proivded if id in the database.
     - message field with the a success message
 
 ## TODO
 
 - Add an update profile feature to the user
-- Link the incomes and expenses with a specific user
+- Link the incomes and outcomes with a specific user
 
 ## How to use
 
